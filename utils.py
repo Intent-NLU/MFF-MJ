@@ -9,13 +9,13 @@ from seqeval.metrics import precision_score, recall_score, f1_score
 from transformers import BertConfig
 from transformers import BertTokenizer
 
-from model import BBA_CNN
+from model import BBA_Mixpooing
 
 import sklearn.metrics
 
 
 MODEL_CLASSES = {
-    'bert': (BertConfig, BBA_CNN, BertTokenizer),
+    'bert': (BertConfig, BBA_Mixpooling, BertTokenizer),
 }
 
 MODEL_PATH_MAP = {
