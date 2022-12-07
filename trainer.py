@@ -151,7 +151,7 @@ class Trainer(object):
         slot_preds = None
         out_intent_label_ids = None
         out_slot_labels_ids = None
-        intent_BBA_CNN=None
+        intent_BBA_mixpooling=None
         real_intent_acc=[]
         pred_intent_acc=[]
         #self.model.eval()
@@ -169,7 +169,7 @@ class Trainer(object):
                 inputs['token_type_ids'] = batch[2]
 
 
-                outputs,intent_BBA_CNN,intent_temp=self.model(**inputs)
+                outputs,intent_BBA_mixpooling,intent_temp=self.model(**inputs)
                 #print('intent_temp:',type(intent_temp),intent_temp[0])
 
                 #use process code
@@ -204,7 +204,7 @@ class Trainer(object):
                 out_intent_label_ids = inputs['intent_label_ids'].detach().cpu().numpy()
             else:
 
-                intent_preds=np.append(intent_preds,intent_BBA_CNN.detach().cpu().numpy(),axis=0)
+                intent_preds=np.append(intent_preds,intent_BBA_mixpooling.detach().cpu().numpy(),axis=0)
                         
                 
                 
