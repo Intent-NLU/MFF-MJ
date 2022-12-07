@@ -200,7 +200,7 @@ class Trainer(object):
             # Intent prediction
             if intent_preds is None:
 
-                intent_preds=intent_BBA_CNN
+                intent_preds=intent_BBA_mixpooling
                 out_intent_label_ids = inputs['intent_label_ids'].detach().cpu().numpy()
             else:
 
