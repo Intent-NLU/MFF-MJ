@@ -1,3 +1,3 @@
 # MFF-MJ
 
-MFF-MJ是多意图识别与槽位填充联合训练模型<br>在MixATIS和MixSNIPS数据集上的最佳epoch为40-50 <br>data.zip需要解压<br>best_model.zip由于模型较大无法上传，可邮箱联系后通过其他途进发送（495361470@qq.com）<br>data.zip和./model后续会上传<br>训练命令：python main.py --task MixATIS --model_dir MixATIS_model
+MFF-MJ is a joint training model for multi-intent detection and slot filling<br>The dataset uses the latest versions of the MixATIS and MixSNIPS datasets in link https://github.com/LooperXX/AGIF, MixATIS_clean and MixSNIPS_clean <br>  Optimal epoch of 40-50 on MixATIS and MixSNIPS datasets <br>The data.zip needs to be unpacked<br>best_model.zip cannot be uploaded due to the size of the model, please contact us by email and send it via other means.（495361470@qq.com）<br>Training orders: python main.py --task MixATIS_clean --model_dir MixATIS_model
