@@ -59,8 +59,8 @@ if __name__ == '__main__':
     parser.add_argument("--max_seq_len", default=50, type=int, help="The maximum total input sequence length after tokenization.")
 
 
-    parser.add_argument('--encoder_hidden_dim', '-ehd', type=int, default=256)
-    parser.add_argument('--attention_output_dim', '-aod', type=int, default=128)
+    parser.add_argument('--encoder_hidden_dim', '-ehd', type=int, default=384)
+    parser.add_argument('--attention_output_dim', '-aod', type=int, default=384)
 
     parser.add_argument("--learning_rate", default=5e-4, type=float, help="The initial learning rate for Adam.")
     # parser.add_argument("--num_train_epochs", default=50.0, type=float, help="Total number of training epochs to perform.")
