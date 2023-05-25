@@ -72,7 +72,7 @@ class MFF_MN(BertPreTrainedModel):
         intent_logits = logits
         intent_num_logits = self.intentnum_classifier(g_c)
         slot_logits = self.slot_classifier(slot_encoder)
-        intent_agif = [[] for i in range(logits.shape[0])]
+        intent_d = [[] for i in range(logits.shape[0])]
 
 
         pred_num = torch.argmax(intent_num_logits, dim=1)
@@ -105,7 +105,7 @@ class MFF_MN(BertPreTrainedModel):
                                 pred_index[i][j]=1
                         mid=pred_index
                         for pre in range(len(pred_index)):
-                            intent_agif[pre]=[i for i, e in enumerate(pred_index[pre]) if e != 0]
+                            intent_d[pre]=[i for i, e in enumerate(pred_index[pre]) if e != 0]
 
                         intent_pred_index = mid
                         intent_pred_index = torch.from_numpy(np.array(intent_pred_index))
@@ -139,7 +139,7 @@ class MFF_MN(BertPreTrainedModel):
         outputs = (total_loss,) + outputs
         if self.args.order_type:
             if train_or_val == 'val':
-                return outputs, intent_pred_index, intent_agif,pred_num
+                return outputs, intent_pred_index, intent_d,pred_num
             else:
                 return outputs
         else:
