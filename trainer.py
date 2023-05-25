@@ -186,11 +186,11 @@ class Trainer(object):
                 if self.args.model_type != 'distilbert':
                     inputs['token_type_ids'] = batch[2]
                 if self.args.order_type:
-                    outputs, int_preds, intent_agif,_ = self.model(**inputs)
-                    # print('intent_agif:',type(intent_agif),intent_agif[0])
+                    outputs, int_preds, intent_int,_ = self.model(**inputs)
+                    # print('intent_int:',type(intent_int),intent_int[0])
 
-                    # use agif code
-                    for i in intent_agif:
+                    # use int code
+                    for i in intent_int:
                         temp = []
                         for j in i:
                             temp.append(self.intent_label_lst[j])
@@ -391,8 +391,8 @@ class Trainer(object):
                 if self.args.model_type != 'distilbert':
                     inputs['token_type_ids'] = batch[2]
                 if self.args.order_type:
-                    outputs, int_preds, intent_agif,pred_num = self.model(**inputs)
-                    # print('intent_agif:',type(intent_agif),intent_agif[0])
+                    outputs, int_preds, intent_int,pred_num = self.model(**inputs)
+                    # print('intent_int:',type(intent_int),intent_int[0])
 
                     if intent_num is None:
                         intent_num = pred_num.detach().cpu().numpy()
@@ -402,8 +402,8 @@ class Trainer(object):
 
 
 
-                    # use agif code
-                    for i in intent_agif:
+                    # use int code
+                    for i in intent_int:
                         temp = []
                         for j in i:
                             temp.append(self.intent_label_lst[j])
