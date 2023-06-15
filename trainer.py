@@ -127,11 +127,7 @@ class Trainer(object):
                         if result["sementic_frame_acc"]>max_overall_acc :
                             self.save_model()
                             max_overall_acc=result["sementic_frame_acc"]
-                    #     self.save_model()
-                    #     max_overall_acc=result["sementic_frame_acc"]
-                    #     max_slot_f1=result["slot_f1"]
-                    if self.args.save_steps > 0 and global_step % self.args.save_steps == 0:
-                        self.save_model()
+
 
                 if 0 < self.args.max_steps < global_step:
                     epoch_iterator.close()
