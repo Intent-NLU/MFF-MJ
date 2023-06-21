@@ -1,4 +1,4 @@
-fimport os
+import os
 import copy
 import json
 import logging
@@ -96,14 +96,13 @@ class JointProcessor(object):
             intent_label=[]
             for i in intent:
 
-                int = self.intent_labels.index(i) if i in self.intent_labels else random.randint(0, len(self.intent_labels)-1)
+                int = self.intent_labels.index(i) if i in self.intent_labels else len(self.intent_labels)+1
 
                 intent_label.append(int)
 
             slot_labels = []
             for s in slot.split():
-                slot_labels.append(self.slot_labels.index(s) if s in self.slot_labels else random.randint(0, len(self.slot_labels)-1))
-
+                slot_labels.append(self.slot_labels.index(s) if s in self.slot_labels else len(self.slot_labels)+1
             assert len(words) == len(slot_labels)
             examples.append(InputExample(guid=guid, words=words, intent_label=intent_label, slot_labels=slot_labels))
         return examples
