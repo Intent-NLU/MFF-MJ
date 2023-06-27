@@ -123,10 +123,10 @@ class Trainer(object):
                     global_step += 1
 
                     if self.args.logging_steps > 0 and global_step % self.args.logging_steps == 0:
-                        result=self.evaluate("dev")
-                        if result["sementic_frame_acc"]>max_overall_acc :
-                            self.save_model()
-                            max_overall_acc=result["sementic_frame_acc"]
+                        self.evaluate("dev")
+
+                    if self.args.save_steps > 0 and global_step % self.args.save_steps == 0:
+                        self.save_model()
 
 
                 if 0 < self.args.max_steps < global_step:
