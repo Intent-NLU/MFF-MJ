@@ -65,7 +65,7 @@ if __name__ == '__main__':
     parser.add_argument("--learning_rate", default=5e-4, type=float, help="The initial learning rate for Adam.")
     # parser.add_argument("--num_train_epochs", default=50.0, type=float, help="Total number of training epochs to perform.")
     #parser.add_argument("--learning_rate", default=0.001, type=float, help="The initial learning rate for Adam.")
-    parser.add_argument("--num_train_epochs", default=150.0, type=float, help="Total number of training epochs to perform.")    
+    parser.add_argument("--num_train_epochs", default=30.0, type=float, help="Total number of training epochs to perform.")    
     
     
     parser.add_argument("--weight_decay", default=0.0, type=float, help="Weight decay if we apply some.")
