@@ -44,7 +44,6 @@ class Trainer(object):
         train_sampler = RandomSampler(self.train_dataset)
         train_dataloader = DataLoader(self.train_dataset, sampler=train_sampler, batch_size=self.args.train_batch_size)
         max_slot_f1 = 0
-        max_overall_acc = 0
         if self.args.max_steps > 0:
             t_total = self.args.max_steps
             self.args.num_train_epochs = self.args.max_steps // (
