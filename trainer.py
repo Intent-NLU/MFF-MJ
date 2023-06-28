@@ -76,7 +76,7 @@ class Trainer(object):
         global_step = 0
         tr_loss = 0.0
         self.model.zero_grad()
-
+        max_overall_acc=0    
         train_iterator = trange(int(self.args.num_train_epochs), desc="Epoch")
 
         for _ in train_iterator:
@@ -120,12 +120,14 @@ class Trainer(object):
                     scheduler.step()  # Update learning rate schedule
                     self.model.zero_grad()
                     global_step += 1
-
                     if self.args.logging_steps > 0 and global_step % self.args.logging_steps == 0:
-                        self.evaluate("dev")
-
-                    if self.args.save_steps > 0 and global_step % self.args.save_steps == 0:
+                        result=self.evaluate("dev")
                         self.save_model()
+                        if result["sementic_frame_acc"]>max_overall_acc :
+                            self.save_model_max()
+                            max_overall_acc=result["sementic_frame_acc"]
+                    
+
 
 
                 if 0 < self.args.max_steps < global_step:
@@ -321,7 +323,16 @@ class Trainer(object):
         # Save training arguments together with the trained model
         torch.save(self.args, os.path.join(self.args.model_dir, 'training_args.bin'))
         logger.info("Saving model checkpoint to %s", self.args.model_dir)
-
+    def save_model_max(self):
+        # Save model checkpoint (Overwrite)
+        if not os.path.exists(self.args.model_dir+"max"):
+            os.makedirs(self.args.model_dir+"max")
+        model_to_save = self.model.module if hasattr(self.model, 'module') else self.model
+        model_to_save.save_pretrained(self.args.model_dir+"max")
+        # Save training arguments together with the trained model
+        torch.save(self.args, os.path.join(self.args.model_dir+"max", 'training_args.bin'))
+        logger.info("Saving model checkpoint to %s", self.args.model_dir+"max")
+    
     def load_model(self):
         # Check whether model exists
         if not os.path.exists(self.args.model_dir):
